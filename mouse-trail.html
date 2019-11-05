@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mousetrail</title>
+</head>
+<body>
+<style>
+    .trail { /* className for the trail elements */
+        position: absolute;
+        height: 6px;
+        width: 6px;
+        border-radius: 3px;
+        background: teal;
+        top: 50px;
+        left:50px;
+    }
+
+    body {
+        height: 300px;
+    }
+</style>
+
+<script>
+  'use strict';
+  const divArray = new Array();
+  // mousemove event
+  document.addEventListener('mousemove', (evt) => {
+    //console.log('mouse coordinates: ', evt.pageX, evt.pageY);
+    // create new div element
+    const newDiv = document.createElement('div');
+
+    // add class trail to div element
+    newDiv.className = 'trail';
+    // set top and left properties to mouse coordinates
+    console.log(evt.pageY);
+    let string = `top: ${evt.pageX}`;
+    console.log(string);
+    newDiv.style.top = `${evt.pageY}px`;
+    newDiv.style.left = `${evt.pageX}px`;
+    //newDiv.setAttribute('style', `left: ${evt.pageY}px`);
+    console.log(newDiv);
+
+    // append the div to body
+    
+    const body = document.querySelector('body');
+    body.appendChild(newDiv);
+    // push div to divArray
+    divArray.push(newDiv);
+
+    if(divArray.length > 20){
+        const removedDiv = divArray.shift();
+        body.removeChild(removedDiv);
+    }
+    // if divArray length bigger than eg. 20
+    // remove first item from array and from body element// your code here
+  });
+</script>
+</body>
+</html>

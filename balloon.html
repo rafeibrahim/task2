@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Balloon popper</title>
+</head>
+
+<body>
+
+    <p id="balloon">🎈</p>
+
+<script>
+  // Your code here
+
+    //set the default size of balloon
+
+     //select Balloon
+    const balloon = document.querySelector('p');
+    let size = 100;
+    balloon.style.fontSize = size + 'px';
+    const sizeChange = (size / 100) * 10;
+
+    
+    
+    
+    
+
+    //event handler:
+    const resizeBalloon = (evt) => {
+        evt.preventDefault();
+        console.log(evt);
+        if(evt.key == 'ArrowUp'){
+            size += sizeChange;
+            if(size == 150){
+                balloon.innerHTML = "💥";
+                balloon.style.fontSize = size;
+                document.removeEventListener('keydown', resizeBalloon);
+            }
+            console.log('Up');
+        
+            balloon.style.fontSize = size + 'px';
+        }
+
+        if(evt.key == 'ArrowDown'){
+            console.log('Down');
+            size -= sizeChange;
+            balloon.style.fontSize = size + 'px';
+        }
+    };
+
+    document.addEventListener('keydown', resizeBalloon);
+</script>
+</body>
